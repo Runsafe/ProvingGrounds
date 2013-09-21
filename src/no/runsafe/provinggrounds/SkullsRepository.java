@@ -1,5 +1,6 @@
 package no.runsafe.provinggrounds;
 
+import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.IRow;
 import no.runsafe.framework.api.database.ISet;
@@ -11,9 +12,10 @@ import java.util.List;
 
 public class SkullsRepository extends Repository
 {
-	public SkullsRepository(IDatabase database)
+	public SkullsRepository(IDatabase database, IOutput console)
 	{
 		this.database = database;
+		this.console = console;
 	}
 
 	@Override
@@ -27,7 +29,10 @@ public class SkullsRepository extends Repository
 		List<Skull> skulls = new ArrayList<Skull>();
 		ISet rows = database.Query("SELECT x, y, z, looted FROM provingGrounds_skulls");
 		for (IRow row : rows)
+		{
+			console.fine("X: " + row.Integer("x"));
 			skulls.add(new Skull(row.Integer("x"), row.Integer("y"), row.Integer("z"), (row.Integer("looted") == 1)));
+		}
 
 		return skulls;
 	}
@@ -58,4 +63,5 @@ public class SkullsRepository extends Repository
 	}
 
 	private IDatabase database;
+	private IOutput console;
 }

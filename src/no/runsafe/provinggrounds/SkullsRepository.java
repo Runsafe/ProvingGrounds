@@ -29,13 +29,7 @@ public class SkullsRepository extends Repository
 		List<Skull> skulls = new ArrayList<Skull>();
 		ISet rows = database.Query("SELECT x, y, z, looted FROM provingGrounds_skulls");
 		for (IRow row : rows)
-		{
-			console.fine("X: " + row.Integer("x"));
-			console.fine("Y: " + row.Integer("y"));
-			console.fine("Z: " + row.Integer("z"));
-			console.fine("L: " + row.Integer("looted"));
 			skulls.add(new Skull(row.Integer("x"), row.Integer("y"), row.Integer("z"), (row.Integer("looted") == 1)));
-		}
 
 		return skulls;
 	}

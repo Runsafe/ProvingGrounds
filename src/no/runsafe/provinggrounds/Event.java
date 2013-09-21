@@ -85,6 +85,7 @@ public class Event implements IConfigurationChanged, IPlayerTeleport, IPlayerMov
 	{
 		if (block != null && block.is(Item.Decoration.Head.Skeleton))
 		{
+			console.fine("Detected right click on a skull");
 			RunsafeLocation location = block.getLocation();
 			boolean remaining = false;
 
@@ -92,6 +93,7 @@ public class Event implements IConfigurationChanged, IPlayerTeleport, IPlayerMov
 			{
 				if (skull.isThisSkull(location) && !skull.isLooted())
 				{
+					console.fine("We found a match that was not looted!");
 					skull.pickupSkull();
 					lockedPlayerRepository.lockPlayer(player);
 					lockedPlayers.add(player.getName());

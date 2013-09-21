@@ -28,7 +28,12 @@ public class LockedPlayerRepository extends Repository
 
 	public List<String> getLockedPlayers()
 	{
-		return database.QueryStrings("SELECT player FROM provingGrounds_lockedPlayers");
+		List<String> players = new ArrayList<String>();
+
+		for (String playerName : database.QueryStrings("SELECT player FROM provingGrounds_lockedPlayers"))
+			players.add(playerName);
+
+		return players;
 	}
 
 	@Override

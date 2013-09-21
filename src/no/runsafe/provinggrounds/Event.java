@@ -84,7 +84,7 @@ public class Event implements IConfigurationChanged, IPlayerTeleport, IPlayerMov
 	public boolean OnPlayerRightClick(RunsafePlayer player, RunsafeMeta usingItem, RunsafeBlock block)
 	{
 		console.fine("We detected a right click event");
-		if (block != null && block.is(Item.Decoration.Head.Any))
+		if (block != null)
 		{
 			console.fine("Detected right click on a skull");
 			RunsafeLocation location = block.getLocation();

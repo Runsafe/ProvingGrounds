@@ -1,6 +1,8 @@
 package no.runsafe.provinggrounds;
 
+import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.RunsafeLocation;
+import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 
 public class Skull
@@ -27,9 +29,12 @@ public class Skull
 			chunk.load();
 	}
 
-	public void pickupSkull()
+	public void pickupSkull(RunsafeWorld world)
 	{
 		looted = true;
+		RunsafeLocation location = new RunsafeLocation(world, x, y, z);
+		allowEdit(location);
+		location.getBlock().set(Item.Unavailable.Air);
 	}
 
 	public int getX()

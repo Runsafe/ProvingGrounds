@@ -95,7 +95,7 @@ public class Event implements IConfigurationChanged, IPlayerTeleport, IPlayerMov
 				if (skull.isThisSkull(location) && !skull.isLooted())
 				{
 					console.fine("We found a match that was not looted!");
-					skull.pickupSkull();
+					skull.pickupSkull(world);
 					lockedPlayerRepository.lockPlayer(player);
 					lockedPlayers.add(player.getName());
 

@@ -2,6 +2,7 @@ package no.runsafe.provinggrounds;
 
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.database.IRow;
+import no.runsafe.framework.api.database.ISet;
 import no.runsafe.framework.api.database.Repository;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class SkullsRepository extends Repository
 	public List<Skull> getSkulls()
 	{
 		List<Skull> skulls = new ArrayList<Skull>();
-		List<IRow> rows = database.Query("SELECT x, y, z, looted FROM provingGrounds_skulls");
+		ISet rows = database.Query("SELECT x, y, z, looted FROM provingGrounds_skulls");
 		for (IRow row : rows)
 			skulls.add(new Skull(row.Integer("x"), row.Integer("y"), row.Integer("z"), (row.Integer("looted") == 1)));
 

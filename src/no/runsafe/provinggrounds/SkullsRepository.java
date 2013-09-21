@@ -31,6 +31,9 @@ public class SkullsRepository extends Repository
 		for (IRow row : rows)
 		{
 			console.fine("X: " + row.Integer("x"));
+			console.fine("Y: " + row.Integer("y"));
+			console.fine("Z: " + row.Integer("z"));
+			console.fine("L: " + row.Integer("looted"));
 			skulls.add(new Skull(row.Integer("x"), row.Integer("y"), row.Integer("z"), (row.Integer("looted") == 1)));
 		}
 

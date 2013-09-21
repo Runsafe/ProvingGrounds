@@ -58,7 +58,7 @@ public class SkullsRepository extends Repository
 						"`x` INT(10) NOT NULL," +
 						"`y` INT(10) NOT NULL," +
 						"`z` INT(10) NOT NULL," +
-						"`looted` TINYINT(1) NOT NULL DEFAULT 0" +
+						"`looted` INT(1) NOT NULL DEFAULT 0" +
 					")"
 		);
 		queries.put(1, sql);

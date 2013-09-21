@@ -1,6 +1,7 @@
 package no.runsafe.provinggrounds;
 
 import no.runsafe.framework.api.IConfiguration;
+import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.event.player.IPlayerInteractEvent;
 import no.runsafe.framework.api.event.player.IPlayerMove;
 import no.runsafe.framework.api.event.player.IPlayerTeleport;
@@ -17,8 +18,9 @@ import java.util.List;
 
 public class Event implements IConfigurationChanged, IPlayerTeleport, IPlayerMove, IPlayerInteractEvent
 {
-	public Event(SkullsRepository skullsRepository, LockedPlayerRepository lockedPlayerRepository)
+	public Event(IOutput console, SkullsRepository skullsRepository, LockedPlayerRepository lockedPlayerRepository)
 	{
+		this.console = console;
 		this.skullsRepository = skullsRepository;
 		this.lockedPlayerRepository = lockedPlayerRepository;
 	}
@@ -56,7 +58,10 @@ public class Event implements IConfigurationChanged, IPlayerTeleport, IPlayerMov
 		}
 
 		if (remaining)
+		{
+			console.fine("We have remaining skulls, setting the event to running!");
 			isRunning = true;
+		}
 	}
 
 	@Override
@@ -147,6 +152,7 @@ public class Event implements IConfigurationChanged, IPlayerTeleport, IPlayerMov
 		RunsafeServer.Instance.broadcastMessage(String.format("%s&f: %s", bossName, message));
 	}
 
+	private IOutput console;
 	private String bossName;
 	private RunsafeWorld world;
 	private RunsafeLocation eventLocation;

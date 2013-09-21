@@ -1,8 +1,6 @@
 package no.runsafe.provinggrounds;
 
-import no.runsafe.framework.minecraft.Item;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.chunk.RunsafeChunk;
 
 public class Skull

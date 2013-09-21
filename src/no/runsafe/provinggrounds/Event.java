@@ -45,16 +45,7 @@ public class Event implements IConfigurationChanged, IPlayerTeleport, IPlayerMov
 		for (Skull skull : skulls)
 		{
 			if (!skull.isLooted())
-			{
 				remaining = true;
-
-				if (world != null)
-					skull.spawn(world);
-			}
-			else if (world != null)
-			{
-				skull.remove(world);
-			}
 		}
 
 		if (remaining)

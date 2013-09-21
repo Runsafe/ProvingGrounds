@@ -15,20 +15,6 @@ public class Skull
 		this.looted = looted;
 	}
 
-	public void spawn(RunsafeWorld world)
-	{
-		RunsafeLocation location = new RunsafeLocation(world, x, y, z);
-		allowEdit(location);
-		location.getBlock().set(Item.Decoration.Head.Skeleton);
-	}
-
-	public void remove(RunsafeWorld world)
-	{
-		RunsafeLocation location = new RunsafeLocation(world, x, y, z);
-		allowEdit(location);
-		location.getBlock().set(Item.Unavailable.Air);
-	}
-
 	public boolean isThisSkull(RunsafeLocation location)
 	{
 		RunsafeLocation skullLocation = new RunsafeLocation(location.getWorld(), x, y, z);

@@ -4,6 +4,7 @@ import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.event.player.IPlayerInteractEvent;
 import no.runsafe.framework.api.event.player.IPlayerMove;
+import no.runsafe.framework.api.event.player.IPlayerRightClick;
 import no.runsafe.framework.api.event.player.IPlayerTeleport;
 import no.runsafe.framework.api.event.plugin.IConfigurationChanged;
 import no.runsafe.framework.minecraft.Item;
@@ -12,11 +13,12 @@ import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.framework.minecraft.block.RunsafeBlock;
 import no.runsafe.framework.minecraft.event.player.RunsafePlayerInteractEvent;
+import no.runsafe.framework.minecraft.item.meta.RunsafeMeta;
 import no.runsafe.framework.minecraft.player.RunsafePlayer;
 
 import java.util.List;
 
-public class Event implements IConfigurationChanged, IPlayerTeleport, IPlayerMove, IPlayerInteractEvent
+public class Event implements IConfigurationChanged, IPlayerTeleport, IPlayerMove, IPlayerRightClick
 {
 	public Event(IOutput console, SkullsRepository skullsRepository, LockedPlayerRepository lockedPlayerRepository)
 	{
@@ -81,18 +83,11 @@ public class Event implements IConfigurationChanged, IPlayerTeleport, IPlayerMov
 	}
 
 	@Override
-	public void OnPlayerInteractEvent(RunsafePlayerInteractEvent event)
+	public boolean OnPlayerRightClick(RunsafePlayer player, RunsafeMeta usingItem, RunsafeBlock block)
 	{
-		RunsafeLocation location = event.getTargetBlock();
-		if (location == null)
-			return;
-
-
-		RunsafeBlock block = location.getBlock();
-
 		if (block != null && block.is(Item.Decoration.Head.Skeleton))
 		{
-			RunsafePlayer player = event.getPlayer();
+			RunsafeLocation location = block.getLocation();
 			boolean remaining = false;
 
 			for (Skull skull : skulls)
@@ -126,6 +121,7 @@ public class Event implements IConfigurationChanged, IPlayerTeleport, IPlayerMov
 				bossSpeak("The trial is complete. We have observed all of you and gathered what information we needed. The winners shall be granted a small prize for your efforts, but this is only the first test. Come back soon for the next.");
 			}
 		}
+		return true;
 	}
 
 	private boolean isPlayerLocked(RunsafePlayer player)

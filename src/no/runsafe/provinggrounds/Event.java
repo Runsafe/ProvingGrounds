@@ -88,6 +88,10 @@ public class Event implements IConfigurationChanged, IPlayerTeleport, IPlayerMov
 	public void OnPlayerInteractEvent(RunsafePlayerInteractEvent event)
 	{
 		RunsafeLocation location = event.getTargetBlock();
+		if (location == null)
+			return;
+
+
 		RunsafeBlock block = location.getBlock();
 
 		if (block != null && block.is(Item.Decoration.Head.Skeleton))

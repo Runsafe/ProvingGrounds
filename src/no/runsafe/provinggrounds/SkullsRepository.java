@@ -37,7 +37,7 @@ public class SkullsRepository extends Repository
 	public void saveSkull(Skull skull)
 	{
 		database.Update(
-				"UPDATE skulls SET looted = ? WHERE x = ? AND y = ? AND z = ?",
+				"UPDATE provingGrounds_skulls SET looted = ? WHERE x = ? AND y = ? AND z = ?",
 				skull.isLooted(), skull.getX(), skull.getY(), skull.getZ()
 		);
 	}

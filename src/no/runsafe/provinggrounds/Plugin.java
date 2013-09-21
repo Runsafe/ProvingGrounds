@@ -1,12 +1,14 @@
 package no.runsafe.provinggrounds;
 
-import no.runsafe.framework.RunsafePlugin;
+import no.runsafe.framework.RunsafeConfigurablePlugin;
 
-public class Plugin extends RunsafePlugin
+public class Plugin extends RunsafeConfigurablePlugin
 {
 	@Override
 	protected void PluginSetup()
 	{
-		// Note from JettKuso: The trial is complete. We have observed all of you and gathered what information we needed. (winner), we shall grant you a small prize for your efforts, but this is only the first test.
+		addComponent(LockedPlayerRepository.class);
+		addComponent(SkullsRepository.class);
+		addComponent(Event.class);
 	}
 }

@@ -1,1 +1,15 @@
-option: value
+eventLocation:
+  world: Creative
+  x: 200
+  y: 20
+  z: 200
+removeLocation:
+  world: Creative
+  x: 0
+  y: 100
+  z: 0
+teleportLocation:
+  world: Creative
+  x: 100
+  y: 60
+  z: 100
